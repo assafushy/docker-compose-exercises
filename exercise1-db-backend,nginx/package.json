@@ -1,0 +1,12 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "A simple Express app that connects to PostgreSQL",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.6.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}

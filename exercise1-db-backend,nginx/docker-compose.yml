@@ -1,0 +1,32 @@
+version: "3"
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: nodejs-dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx:/etc/nginx/conf.d/
+    ports:
+      - "80:80"
+    depends_on:
+      - nodejs
+
+volumes:
+  postgres_data:
